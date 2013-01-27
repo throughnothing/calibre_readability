@@ -23,6 +23,18 @@ class Readitlater(BasicNewsRecipe):
 #    delay = 0.2 # default 0
     simultaneous_downloads = 5 # set to 1 anyway if delay is > 0
     timeout = 120.0 # in seconds, default 120
+    remove_tags = [ dict(name='aside', attrs={'class':'tools'}),
+                    dict(name='div',  attrs={'class':'article-actions'}),
+                    dict(name='footer',  attrs={'id':'footnotes'}),
+                    dict(name='section',  attrs={'id':'print-url'}),
+                    dict(name='div',  attrs={'class':'tags'}),
+                    dict(name='div',  attrs={'class':'pitch hidden'}),
+                    dict(name='div',  attrs={'id':'flyout-kindle'}),
+                    dict(name='div',  attrs={'id':'flyout-appearance'}),
+                    dict(name='div',  attrs={'id':'kindle-send-blurb'}),
+                    dict(name='div',  attrs={'class':'flyout flyout-add-tags tip-left hidden'}),
+                  ]
+
 
     INDEX                 = u'https://www.readability.com'
 
