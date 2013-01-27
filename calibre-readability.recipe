@@ -20,7 +20,8 @@ class Readitlater(BasicNewsRecipe):
     use_embedded_content  = False # default None
     needs_subscription    = True # default False
     auto_cleanup = True # default False
-#    delay = 0.2 # default 0
+    include_favorites = False
+    #delay = 0.2 # default 0
     simultaneous_downloads = 5 # set to 1 anyway if delay is > 0
     timeout = 120.0 # in seconds, default 120
     remove_tags = [ dict(name='aside', attrs={'class':'tools'}),
@@ -63,10 +64,11 @@ class Readitlater(BasicNewsRecipe):
 
         base_url = self.INDEX + u'/' + self.username
         reading_list_url = base_url + u'/latest'
-        favorites_url = base_url + u'/favorites'
-        self.report_progress(0, (favorites_url))
         lfeeds.append((u'Reading List', reading_list_url))
-        lfeeds.append((u'Favorites', favorites_url))
+        if self.include_favorites:
+            favorites_url = base_url + u'/favorites'
+            self.report_progress(0, (favorites_url))
+            lfeeds.append((u'Favorites', favorites_url))
 
         return lfeeds
 
